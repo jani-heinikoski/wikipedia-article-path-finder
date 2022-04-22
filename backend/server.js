@@ -108,7 +108,7 @@ const getLinkedTitlesOfPage = async (pageTitle) => {
         } while (responseAsJSON.continue);
         return titles;
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
     return null;
 };
@@ -165,8 +165,6 @@ const onWorkerExit = (code, signal, worker) => {
 if (cluster.isPrimary) {
     console.log(`Master running PID ${process.pid}`);
     const app = express();
-    // Content-Type of req must match application/json or it won't be parsed
-    app.use(express.json({ type: "application/json" }));
     // Handle HTTP GET requests to route /api/v1/:fromArticle/:toArticle
     app.get(
         "/api/v1/:startTitle/:targetTitle",
@@ -190,7 +188,6 @@ if (cluster.isPrimary) {
             const startingTitles = await getLinkedTitlesOfPage(
                 req.params.startTitle
             );
-            console.log(startingTitles);
             // Check if the target link is already within the starting page
             for (const title of startingTitles) {
                 if (
@@ -204,7 +201,7 @@ if (cluster.isPrimary) {
                 }
             }
             // Fork workers
-            for (let i = 0; i < cpus().length; i++) {
+            for (let i = 0; i < Math.max(cpus().length, 12); i++) {
                 let worker = cluster.fork();
                 worker.on("message", (obj) =>
                     onMasterReceivedMsg(obj, worker, res)
@@ -214,7 +211,10 @@ if (cluster.isPrimary) {
                 );
             }
             // Split the first titles among the workers and send them for processing
-            const workersTitles = splitArray(startingTitles, cpus().length);
+            const workersTitles = splitArray(
+                startingTitles,
+                Math.max(cpus().length, 12)
+            );
             let i = 0;
             for (const worker of Object.values(cluster.workers)) {
                 worker.send({

@@ -15,7 +15,9 @@ const getInput = async (text) => {
 
 const main = async () => {
     let startArticle, targetArticle, serverResponse, resJSON;
-    const MENU = "1) Find if there is a path between two articles\n0) Exit";
+    console.log(
+        "Press CTRL+C (keyboard interrupt) at any time to stop the client program."
+    );
     while (true) {
         startArticle = await getInput("Give the starting article");
         targetArticle = await getInput("Give the target article");
