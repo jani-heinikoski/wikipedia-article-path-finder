@@ -21,23 +21,23 @@ Final project of the LUT course Distributed Systems 2022.
 3 Open up a terminal and install the dependencies for the client and the backend.
 
 ```cmd
-  cd ./wikipedia-article-path-finder/client
+  cd wikipedia-article-path-finder/client
   npm install
-  cd ./wikipedia-article-path-finder/backend
+  cd wikipedia-article-path-finder/backend
   npm install
 ```
 
 4 Start the server with
 
 ```bash
-  cd ./wikipedia-article-path-finder
+  cd wikipedia-article-path-finder
   npm run startServer
 ```
 
 5 Start the client with
 
 ```bash
-  cd ./wikipedia-article-path-finder
+  cd wikipedia-article-path-finder
   npm run startClient
 ```
 
