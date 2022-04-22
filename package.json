@@ -1,0 +1,19 @@
+{
+    "name": "wikipedia-article-path-finder",
+    "version": "1.0.0",
+    "description": "Distributed Systems LUT course final project",
+    "scripts": {
+        "startServer": "node ./backend/server.js",
+        "startClient": "node ./client/client.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jani-heinikoski/wikipedia-article-path-finder.git"
+    },
+    "author": "Jani Heinikoski",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jani-heinikoski/wikipedia-article-path-finder/issues"
+    },
+    "homepage": "https://github.com/jani-heinikoski/wikipedia-article-path-finder#readme"
+}

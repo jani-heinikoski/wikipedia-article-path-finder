@@ -1,0 +1,24 @@
+{
+    "name": "wikipedia-article-path-finder-backend",
+    "version": "1.0.0",
+    "description": "Express backend for the wikipedia-article-path-finder project",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jani-heinikoski/wikipedia-article-path-finder.git"
+    },
+    "author": "Jani Heinikoski",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jani-heinikoski/wikipedia-article-path-finder/issues"
+    },
+    "homepage": "https://github.com/jani-heinikoski/wikipedia-article-path-finder#readme",
+    "dependencies": {
+        "express": "^4.17.3",
+        "express-validator": "^6.14.0",
+        "node-fetch": "^2.6.7"
+    }
+}
