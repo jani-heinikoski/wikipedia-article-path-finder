@@ -13,6 +13,7 @@ const cluster = require("cluster");
 const { cpus } = require("os");
 const express = require("express");
 const { body, param, validationResult } = require("express-validator");
+const WORKER_AMOUNT = 12;
 
 // Utility function for splitting an array into n equal sized parts. [4]
 const splitArray = (arr, n) => {
@@ -201,7 +202,7 @@ if (cluster.isPrimary) {
                 }
             }
             // Fork workers
-            for (let i = 0; i < Math.max(cpus().length, 12); i++) {
+            for (let i = 0; i < WORKER_AMOUNT; i++) {
                 let worker = cluster.fork();
                 worker.on("message", (obj) =>
                     onMasterReceivedMsg(obj, worker, res)
@@ -211,10 +212,7 @@ if (cluster.isPrimary) {
                 );
             }
             // Split the first titles among the workers and send them for processing
-            const workersTitles = splitArray(
-                startingTitles,
-                Math.max(cpus().length, 12)
-            );
+            const workersTitles = splitArray(startingTitles, WORKER_AMOUNT);
             let i = 0;
             for (const worker of Object.values(cluster.workers)) {
                 worker.send({

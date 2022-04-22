@@ -21,18 +21,28 @@ const main = async () => {
     while (true) {
         startArticle = await getInput("Give the starting article");
         targetArticle = await getInput("Give the target article");
-        console.time("search");
+        console.time("Search took: ");
         try {
             serverResponse = await fetch(
                 `http://localhost:3000/api/v1/${startArticle}/${targetArticle}`
             );
             if (serverResponse.ok) {
                 resJSON = await serverResponse.json();
+                console.log(`Shortest path was found? ${resJSON.found}`);
+                if (resJSON.found) {
+                    console.log(
+                        `The target article was found from ${resJSON.directAncestor}`
+                    );
+                }
+            } else {
+                console.log(`Shortest path was found? ${false}`);
             }
         } catch (ex) {
-            console.error(ex);
+            console.log(
+                "An unexpected exception was thrown, check your Internet connection or contact the server administrator..."
+            );
         }
-        console.timeEnd("search");
+        console.timeEnd("Search took: ");
     }
 };
 
