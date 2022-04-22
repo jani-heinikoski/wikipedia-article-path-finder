@@ -44,5 +44,5 @@ Final project of the LUT course Distributed Systems 2022.
 
 ## Demo
 
-[Video demonstration of the project running and a brief codebase breakdown]()
+[Video demonstration of the project running and a brief codebase breakdown](https://lut-my.sharepoint.com/:v:/g/personal/jani_heinikoski_student_lut_fi/EVVxJRIFAwJJvv_rpQcIqsIBH7znFf8stqNC515c7-7qiQ?e=X0BP9Q)
 
